@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diningreview-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diningreview
+  template:
+    metadata:
+      labels:
+        app: diningreview
+    spec:
+      containers:
+      - name: diningreview-container
+        image: diningreview-release-1:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
