@@ -11,20 +11,21 @@
         stage('Build') {
             steps {
                 // Build your application (e.g., compile code, package artifacts)
-                sh 'echo $PATH; which mvn; mvn clean package'
+                sh 'echo $PATH; which mvn; cd restaurantreviewapp; mvn clean package'
             }
         }
         stage('Test') {
             steps {
                 // Run tests for your application
-                sh 'mvn test'
+                sh 'cd restaurantreviewapp; mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 // Deploy your application (e.g., to a server, container, or cloud platform)
-                sh 'kubectl apply -f deployment.yaml'
+                sh 'cd restaurantreviewapp; cd k8s; kubectl apply -f deployment.yaml'
             }
         }
     }
 }
+
